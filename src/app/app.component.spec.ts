@@ -26,10 +26,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('login');
   });
 
-  it('should render title', () => {
+  it('should has a tag router-outlet', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('login app is running!');
+    const compiled = fixture.nativeElement.querySelector('router-outlet');
+    expect(compiled).not.toBeNull();
   });
 });
