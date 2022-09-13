@@ -1,11 +1,40 @@
-<form>
-    <input id="email" type="email">
+<div class="login-wrapper">
+    <form class="login">
+        <section class="title">
+            <h3 class="welcome">Welcome to</h3>
+            Login
+            <h5 class="hint">This is an app made using Angular to frontend and Django Rest to backend</h5>
+        </section>
 
-    <input id="password" type="password">
-</form>
+        <div class="login-group">
+            <clr-input-container>
+                <label class="clr-sr-only">E-mail</label>
+                <input id="email" name="email" clrInput placeholder="email" type="email">
+            </clr-input-container>
 
-<button id="loginButton" type="submit">Login</button>
+            <clr-password-container>
+                <label class="clr-sr-only">Password</label>
+                <input id="password" type="password" clrPassword placeholder="password">
+            </clr-password-container>
 
-<button id="loginGoogleButton">Login with Google</button>
+            <a href="" >Esqueceu sua senha?</a>
 
-<button id="loginMicrosoftButton">Login with Microsoft</button>
+            <button id="loginButton" type="submit" class="btn btn-primary">Login</button>
+        </div>
+
+        <div class="padding-10" fxLayout="row" fxLayoutAlign="center center">
+
+            <div class="btn-group btn-primary btn-icon">
+                <button id="loginGoogleButton" type="button" class="btn">
+                    <fa-icon size="lg" [icon]="faGoogle"></fa-icon>
+                </button>
+    
+                <button id="loginMicrosftButton" type="button" class="btn ">
+                    <fa-icon size="lg" [icon]="faMicrosoft"></fa-icon>
+                </button>
+            </div>
+        </div>
+
+
+    </form>
+</div>
