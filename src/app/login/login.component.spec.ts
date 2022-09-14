@@ -21,7 +21,7 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should has a form to complete', () => {
+  it('should has a form to fill', () => {
     const fixture = TestBed.createComponent(LoginComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement.querySelector('form');
@@ -42,7 +42,14 @@ describe('LoginComponent', () => {
     expect(compiled.attributes.getNamedItem('type')?.value).toContain('password');
   });
 
-  it('should has a button to Login, with text Login', () => {
+  it('should has an anchor text written -- Esqueceu sua senha? --', () => {
+    const fixture = TestBed.createComponent(LoginComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement.querySelector('#forgotPassword') as HTMLAnchorElement;
+    expect(compiled.innerText).toContain('Esqueceu sua senha?');
+  });
+
+  it('should has a button to Login, w/ Login text', () => {
     const fixture = TestBed.createComponent(LoginComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement.querySelector('#loginButton') as HTMLButtonElement;
@@ -50,17 +57,17 @@ describe('LoginComponent', () => {
     expect(compiled.innerText).toContain('Login');
   });
 
-  it('should has a button to Login with Google, with text Login with Google', () => {
+  it('should has a button to Login with Google', () => {
     const fixture = TestBed.createComponent(LoginComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement.querySelector('#loginGoogleButton') as HTMLButtonElement;
-    expect(compiled.innerText).toContain('Login with Google');
+    expect(compiled).not.toBeNull();
   });
 
-  it('should has a button to Login with Microsoft, with text Login with Microsoft', () => {
+  it('should has a button to Login with Microsoft', () => {
     const fixture = TestBed.createComponent(LoginComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement.querySelector('#loginMicrosoftButton') as HTMLButtonElement;
-    expect(compiled.innerText).toContain('Login with Microsoft');
+    expect(compiled).not.toBeNull();
   });
 });

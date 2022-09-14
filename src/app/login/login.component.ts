@@ -9,7 +9,7 @@ import { faGoogle, faMicrosoft } from '@fortawesome/free-brands-svg-icons'
 export class LoginComponent implements OnInit {
 
   faGoogle = faGoogle;
-  faMicrosoft = faMicrosoft
+  faMicrosoft = faMicrosoft;
 
   constructor() { 
   }
