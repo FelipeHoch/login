@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { faGoogle, faMicrosoft } from '@fortawesome/free-brands-svg-icons'
-import { FormFieldErrorMsgService } from './services/form-field-error-msg.service';
+import { FormFieldErrorMsgService } from '../services/form-field-error-msg.service';
 
 @Component({
   selector: 'app-login',
