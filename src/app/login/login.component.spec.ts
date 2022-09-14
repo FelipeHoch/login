@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login.component';
 
@@ -8,7 +9,8 @@ describe('LoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginComponent ]
+      declarations: [ LoginComponent ],
+      imports: [ FormsModule, ReactiveFormsModule ]
     })
     .compileComponents();
 
@@ -70,4 +72,51 @@ describe('LoginComponent', () => {
     const compiled = fixture.nativeElement.querySelector('#loginMicrosoftButton') as HTMLButtonElement;
     expect(compiled).not.toBeNull();
   });
+
+  it('should initialize form with empty values', () => {
+    const loginFormGroup = component.loginForm;
+    const loginFormValues = {
+      email: '',
+      password: ''
+    };
+
+    expect(loginFormGroup.value).toEqual(loginFormValues);
+  })
+
+  it('should fail when submit form before user enter with value', () => {
+    const loginFormGroup = component.loginForm;
+    const loginFormValues = {
+      email: '',
+      password: ''
+    };
+
+    expect(loginFormGroup.value).toEqual(loginFormValues);
+    expect(loginFormGroup.get('email')?.errors).not.toBeNull();
+    expect(loginFormGroup.get('password')?.errors).not.toBeNull();
+  })
+
+  it('should fail when email isnt in correct format', () => {
+    const loginFormGroup = component.loginForm;
+  
+    loginFormGroup.get('email')?.setValue('hochfelipegmail.com');
+
+    expect(loginFormGroup.get('email')?.errors).not.toBeNull();
+  })
+
+  it('should fail when password has less than 6 of length', () => {
+    const loginFormGroup = component.loginForm;
+  
+    loginFormGroup.get('password')?.setValue('01234');
+
+    expect(loginFormGroup.get('password')?.errors).not.toBeNull();
+  })
+
+  it('should be valid form after correct values', () => {
+    const loginFormGroup = component.loginForm;
+  
+    loginFormGroup.get('email')?.setValue('hochfelipe@gmail.com');
+    loginFormGroup.get('password')?.setValue('012345');
+
+    expect(loginFormGroup.valid).toBeTrue();
+  })
 });
