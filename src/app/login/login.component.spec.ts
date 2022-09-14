@@ -44,11 +44,11 @@ describe('LoginComponent', () => {
     expect(compiled.attributes.getNamedItem('type')?.value).toContain('password');
   });
 
-  it('should has an anchor text written -- Esqueceu sua senha? --', () => {
+  it('should has an anchor text written -- Forgot your password? --', () => {
     const fixture = TestBed.createComponent(LoginComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement.querySelector('#forgotPassword') as HTMLAnchorElement;
-    expect(compiled.innerText).toContain('Esqueceu sua senha?');
+    expect(compiled.innerText).toContain('Forgot your password?');
   });
 
   it('should has a button to Login, w/ Login text', () => {
