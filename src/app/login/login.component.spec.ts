@@ -1,11 +1,16 @@
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
+import { LoginData } from '../interfaces/login-data';
 
 import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
+  let debugElement: DebugElement;
+  let submitSpy: any;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -17,6 +22,9 @@ describe('LoginComponent', () => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    debugElement = fixture.debugElement;
+
+    submitSpy = spyOn(component, 'onSubmit').and.callThrough();
   });
 
   it('should create', () => {
@@ -118,5 +126,24 @@ describe('LoginComponent', () => {
     loginFormGroup.get('password')?.setValue('012345');
 
     expect(loginFormGroup.valid).toBeTrue();
+  })
+
+  it('should call onSubmit after submit', () => {
+    const loginButton = fixture.nativeElement.querySelector('#loginButton') as HTMLButtonElement;
+
+    loginButton.click();
+
+    expect(submitSpy).toHaveBeenCalled();
+  })
+
+  it('should be return loginData after submit correctly', () => {
+    const loginData: LoginData = {
+      email: 'test@test.com',
+      password: '1723456'
+    };
+
+    component.loginForm.setValue(loginData)
+
+    expect(component.onSubmit()).toEqual(loginData);
   })
 });

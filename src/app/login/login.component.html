@@ -23,7 +23,7 @@
 
             <a id="forgotPassword" href="" >Forgot your password?</a>
 
-            <button id="loginButton" type="submit" class="btn btn-primary">Login</button>
+            <button [clrLoading]="submitBtnState" (click)="onSubmit()" id="loginButton" type="submit" class="btn btn-primary">Login</button>
         </div>
 
         <div class="padding-10" fxLayout="row" fxLayoutAlign="center center">
