@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { faGoogle, faMicrosoft } from '@fortawesome/free-brands-svg-icons'
-import { FormFieldErrorMsgService } from '../services/form-field-error-msg.service';
 import { ClrLoadingState } from '@clr/angular';
-import { LoginData } from '../interfaces/login-data';
-import { LoginForm } from '../interfaces/login-form';
+import { FormFieldErrorMsgService, LoginData, LoginForm } from '../core';
+
+
 
 @Component({
   selector: 'app-login',
@@ -37,9 +37,9 @@ export class LoginComponent implements OnInit {
     this.submitBtnState = ClrLoadingState.LOADING;
 
     // Just for test loading 
-    setTimeout(() => {this.submitBtnState = ClrLoadingState.DEFAULT}, 2000);
+    setTimeout(() => { this.submitBtnState = ClrLoadingState.DEFAULT }, 2000);
 
-    if(this.loginForm.invalid) return null;
+    if (this.loginForm.invalid) return null;
 
     let loginData: LoginData = {
       email: this.loginForm.value.email!,

@@ -2,7 +2,7 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { LoginData } from '../interfaces/login-data';
+import { LoginData } from '../core/interfaces/login-data';
 
 import { LoginComponent } from './login.component';
 

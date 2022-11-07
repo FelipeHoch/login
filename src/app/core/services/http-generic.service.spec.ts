@@ -1,8 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
-import { HttpGenericService } from './http-generic.service';
-
 import { HttpClientTestingModule, HttpTestingController, } from '@angular/common/http/testing';
+import { HttpGenericService } from '.';
 
 describe('HttpGenericService', () => {
   let httpTestingController: HttpTestingController;

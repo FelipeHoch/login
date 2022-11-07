@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
+import { errorMessages } from '..';
 
-import { errorMessages } from 'src/app/constants/error-messages';
 
 
 @Injectable({
