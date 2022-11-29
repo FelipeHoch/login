@@ -5,6 +5,8 @@ import { LoginComponent } from './login.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared';
+import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -14,7 +16,27 @@ import { SharedModule } from '../shared';
   imports: [
     LoginRoutingModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    SocialLoginModule
+  ],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              "166598508396-d7d41dbjmsclm2h4qbga90hm3do5hebb.apps.googleusercontent.com"
+            )
+          }
+        ],
+        onError: (err: Error) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig
+    }
   ]
 })
 export class LoginModule { }

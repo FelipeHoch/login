@@ -26,19 +26,15 @@
             <button [clrLoading]="submitBtnState" (click)="onSubmit()" id="loginButton" type="submit" class="btn btn-primary">Login</button>
         </div>
 
-        <div class="padding-10" fxLayout="row" fxLayoutAlign="center center">
+        <div class="padding-10" fxLayout="column" fxLayoutAlign="center center">
 
-            <div class="btn-group btn-primary btn-icon">
-                <button id="loginGoogleButton" type="button" class="btn">
-                    <fa-icon size="lg" [icon]="faGoogle"></fa-icon>
-                </button>
+            <div class="btn-group btn-primary btn-icon" fxLayout="column">
+                <asl-google-signin-button class="margin-2" type='standard' size='large'></asl-google-signin-button> 
     
-                <button id="loginMicrosoftButton" type="button" class="btn ">
+                <button id="loginMicrosoftButton" type="button" class="btn margin-2">
                     <fa-icon size="lg" [icon]="faMicrosoft"></fa-icon>
                 </button>
             </div>
         </div>
-
-
     </form>
 </div>

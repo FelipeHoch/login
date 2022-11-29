@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { faGoogle, faMicrosoft } from '@fortawesome/free-brands-svg-icons'
 import { ClrLoadingState } from '@clr/angular';
-import { FormFieldErrorMsgService, LoginData, LoginForm } from '../core';
+import { AuthService, FormFieldErrorMsgService, LoginData, LoginForm } from '../core';
+import { GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
 
 
 
@@ -26,11 +27,12 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: NonNullableFormBuilder,
-    private errorMessageService: FormFieldErrorMsgService
+    private errorMessageService: FormFieldErrorMsgService,
+    private authGoogleService: SocialAuthService
   ) { }
 
   ngOnInit(): void {
-
+    this.authGoogleService.authState.subscribe((user) => console.log(user));
   }
 
   onSubmit() {
@@ -48,6 +50,10 @@ export class LoginComponent implements OnInit {
 
     return loginData;
   }
+
+  // signInWithGoogle(): void {
+  //   this.authGoogleService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  // }
 
   get email() {
     return this.loginForm.get('email')!;
