@@ -1,26 +1,6 @@
-.margin-2 {
-    margin: 2px !important;
-}
-
-.padding-5 {
-    padding: 5px !important;
-}
-
-.margin-5 {
-    margin: 5px !important;
-}
-
-.padding-10 {
-    padding: 10px !important;
-}
-
-.padding-15 {
-    padding: 15px !important;
-}
-
-.padding-20 {
-    padding: 20px !important;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;

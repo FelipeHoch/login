@@ -1,40 +1,46 @@
 <div class="login-wrapper">
-    <form [formGroup]="loginForm" clrForm class="login">
-        <section class="title">
-            <h3 class="welcome">Welcome to</h3>
-            Login
-            <h5 class="hint">This is an app made using Angular to frontend and Asp Net Core to backend</h5>
-        </section>
-
-        <div class="login-group">
-            <clr-input-container>
-                <label class="clr-sr-only">Email</label>
-                <input formControlName="email" id="email" clrInput placeholder="Enter with your email..." type="email">
-
-                <clr-control-error>{{ showErrorMsg(email) }}</clr-control-error>
-            </clr-input-container>
-
-            <clr-password-container>
-                <label class="clr-sr-only">Password</label>
-                <input formControlName="password" id="password" type="password" clrPassword placeholder="Enter with your password...">
-
-                <clr-control-error>{{ showErrorMsg(password) }}</clr-control-error>
-            </clr-password-container>
-
-            <a id="forgotPassword" href="" >Forgot your password?</a>
-
-            <button [clrLoading]="submitBtnState" (click)="onSubmit()" id="loginButton" type="submit" class="btn btn-primary">Login</button>
+    <div class="grid justify-items-center min-h-screen">
+        <div class="login !min-h-0">
+            <form [formGroup]="loginForm" clrForm>
+                <section class="title">
+                    <h3 class="welcome">Welcome to</h3>
+                    Login
+                    <h5 class="hint">This is an app made using Angular to frontend and Asp Net Core to backend</h5>
+                </section>
+    
+                <div class="login-group">
+                    <clr-input-container>
+                        <label class="clr-sr-only">Email</label>
+                        <input formControlName="email" id="email" clrInput placeholder="Enter with your email..."
+                            type="email">
+    
+                        <clr-control-error>{{ showErrorMsg(email) }}</clr-control-error>
+                    </clr-input-container>
+    
+                    <clr-password-container>
+                        <label class="clr-sr-only">Password</label>
+                        <input formControlName="password" id="password" type="password" clrPassword
+                            placeholder="Enter with your password...">
+    
+                        <clr-control-error>{{ showErrorMsg(password) }}</clr-control-error>
+                    </clr-password-container>
+    
+                    <a id="forgotPassword" href="">Forgot your password?</a>
+    
+                    <button [clrLoading]="submitBtnState" (click)="onSubmit()" id="loginButton" type="submit"
+                        class="btn btn-primary">Login</button>
+                </div>
+            </form>
         </div>
 
-        <div class="padding-10" fxLayout="column" fxLayoutAlign="center center">
+        <div class="p-0">
+            <div class="justify-items-center">
+                <asl-google-signin-button class="m-0 w-full" type='standard' size='large'></asl-google-signin-button>
 
-            <div class="btn-group btn-primary btn-icon" fxLayout="column">
-                <asl-google-signin-button class="margin-2" type='standard' size='large'></asl-google-signin-button> 
-    
-                <button id="loginMicrosoftButton" type="button" class="btn margin-2">
+                <button id="loginMicrosoftButton" type="button" class="btn-primary btn-icon btn m-0 w-full">
                     <fa-icon size="lg" [icon]="faMicrosoft"></fa-icon>
                 </button>
             </div>
         </div>
-    </form>
+    </div>
 </div>
