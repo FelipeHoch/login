@@ -1,5 +1,5 @@
-<div class="login-wrapper">
-    <div class="grid justify-items-center min-h-screen">
+<div class="login-wrapper content-start">
+    <div class="min-h-screen grid justify-items-center content-center">
         <div class="login !min-h-0">
             <form [formGroup]="loginForm" clrForm>
                 <section class="title">
@@ -34,13 +34,11 @@
         </div>
 
         <div class="p-0">
-            <div class="justify-items-center">
-                <asl-google-signin-button class="m-0 w-full" type='standard' size='large'></asl-google-signin-button>
+            <asl-google-signin-button class="m-0 w-full" type='standard' size='large'></asl-google-signin-button>
 
-                <button id="loginMicrosoftButton" type="button" class="btn-primary btn-icon btn m-0 w-full">
-                    <fa-icon size="lg" [icon]="faMicrosoft"></fa-icon>
-                </button>
-            </div>
+            <button id="loginMicrosoftButton" type="button" class="btn-primary btn-icon btn m-0 w-full">
+                <fa-icon size="lg" [icon]="faMicrosoft"></fa-icon>
+            </button>
         </div>
     </div>
 </div>

@@ -4,6 +4,7 @@ import { faGoogle, faMicrosoft } from '@fortawesome/free-brands-svg-icons'
 import { ClrLoadingState } from '@clr/angular';
 import { AuthService, FormFieldErrorMsgService, LoginData, LoginForm } from '../core';
 import { GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
+import { LoginService } from './login.service';
 
 
 
@@ -28,11 +29,14 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: NonNullableFormBuilder,
     private errorMessageService: FormFieldErrorMsgService,
-    private authGoogleService: SocialAuthService
+    private authGoogleService: SocialAuthService,
+    private loginService: LoginService
   ) { }
 
   ngOnInit(): void {
-    this.authGoogleService.authState.subscribe((user) => console.log(user));
+    this.authGoogleService.authState.subscribe((user) => {
+      this.loginService.sendGoogleToken(user.idToken).subscribe(res => console.log(res));
+    });
   }
 
   onSubmit() {
