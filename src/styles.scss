@@ -7,3 +7,19 @@
     -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important;
     outline: none !important;
 }
+
+.login-wrapper {
+    background: url("./assets/bg-login.svg") !important;
+    background-position-x: initial !important;
+    background-position-y: initial !important;
+    background-size: initial !important;
+    background-attachment: initial !important;
+    background-origin: initial !important;
+    background-clip: initial !important;
+    background-color: initial !important;
+    background-size: 100% !important;
+    background-position: 25.2rem 0 !important;
+    background-repeat: no-repeat !important;
+    height: 100% !important;
+    display: flex !important;
+}
