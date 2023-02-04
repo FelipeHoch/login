@@ -35,7 +35,15 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.authGoogleService.authState.subscribe((user) => {
-      this.loginService.sendGoogleToken(user.idToken).subscribe(res => console.log(res));
+      console.log(user)
+      this.loginService.sendGoogleToken(user.idToken).subscribe({
+        next: res => {
+          
+        },
+        error: error => {
+          console.log(error)
+        }
+      });
     });
   }
 

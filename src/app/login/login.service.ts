@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -15,6 +15,11 @@ export class LoginService {
   sendGoogleToken(token: string): Observable<any> {
     let obj = { token: token };
 
-    return this.http.post(environment.apiUrl + "auth/google", obj);
+    let headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    });
+
+    return this.http.post(environment.apiUrl + "auth/google", obj, { headers: headers });
   }
 }
