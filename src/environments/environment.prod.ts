@@ -1,4 +1,4 @@
 export const environment = {
-    production: false,
+    production: true,
     apiUrl: 'https://multi-login-api.herokuapp.com/api/'
   };

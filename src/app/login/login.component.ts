@@ -5,6 +5,7 @@ import { ClrLoadingState } from '@clr/angular';
 import { AuthService, FormFieldErrorMsgService, LoginData, LoginForm } from '../core';
 import { GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
 import { LoginService } from './login.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -21,6 +22,8 @@ export class LoginComponent implements OnInit {
 
   submitBtnState: ClrLoadingState = ClrLoadingState.DEFAULT;
 
+  redirect = this.route.snapshot.queryParamMap.get("redirect") || "";
+
   loginForm = this.fb.group<LoginForm>({
     email: this.fb.control('', [Validators.required, Validators.email]),
     password: this.fb.control('', [Validators.required, Validators.minLength(6)])
@@ -30,18 +33,19 @@ export class LoginComponent implements OnInit {
     private fb: NonNullableFormBuilder,
     private errorMessageService: FormFieldErrorMsgService,
     private authGoogleService: SocialAuthService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private authService: AuthService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.authGoogleService.authState.subscribe((user) => {
-      console.log(user)
       this.loginService.sendGoogleToken(user.idToken).subscribe({
         next: res => {
-          
+          this.authService.signIn(res, this.redirect)
         },
         error: error => {
-          console.log(error)
+
         }
       });
     });
