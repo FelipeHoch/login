@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="18.79681mm"
+   height="18.785423mm"
+   viewBox="0 0 18.79681 18.785423"
+   version="1.1"
+   id="svg5"
+   xml:space="preserve"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   sodipodi:docname="spinner-jantzch.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="3.1251122"
+     inkscape:cx="-154.23446"
+     inkscape:cy="73.597357"
+     inkscape:window-width="2498"
+     inkscape:window-height="1057"
+     inkscape:window-x="1358"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g25" /><defs
+     id="defs2"><style
+       id="style9">
+            .cls-1,
+            .cls-2 {
+                fill: none;
+                stroke-miterlimit: 10;
+                stroke-width: 5px;
+            }
+            .cls-1 {
+                stroke: black;
+                stroke-opacity: 0.15;
+            }
+            .cls-2 {
+                stroke: #0072a3;
+            }
+        </style></defs><g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-75.265223,-53.93568)"><g
+       id="g25"
+       transform="matrix(0.26458333,0,0,0.26458333,75.144325,53.803396)"><circle
+         class="cls-1"
+         cx="36"
+         cy="36"
+         r="33"
+         id="circle15"
+         inkscape:label="circle15" /><path
+         class="cls-2"
+         d="M 14.3,60.9 C 12.539319,59.368694 10.971136,57.679416 9.6042606,55.866929 4.2247164,48.733612 1.9632871,39.691856 3.3569965,30.860808 3.6995546,28.690236 4.2629272,26.532393 5.0550885,24.418746 5.3994228,23.499993 5.7818255,22.603357 6.2001045,21.730357 8.6461108,16.625238 12.318963,12.328372 16.780292,9.1431801 22.2663,5.2264124 28.944574,2.9906234 36,3"
+         id="path17"
+         sodipodi:nodetypes="csssssc"
+         style="stroke:#ffcd00;stroke-opacity:1" /></g></g></svg>

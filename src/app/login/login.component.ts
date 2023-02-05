@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit {
 
   redirect = this.route.snapshot.queryParamMap.get("redirect") || "";
 
+  isLoadingGoogle = false;
+
   loginForm = this.fb.group<LoginForm>({
     email: this.fb.control('', [Validators.required, Validators.email]),
     password: this.fb.control('', [Validators.required, Validators.minLength(6)])
@@ -40,12 +42,16 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.authGoogleService.authState.subscribe((user) => {
+      this.isLoadingGoogle = true;
+
       this.loginService.sendGoogleToken(user.idToken).subscribe({
         next: res => {
-          this.authService.signIn(res, this.redirect)
+          this.authService.signIn(res, this.redirect);
+
+          this.isLoadingGoogle = false;
         },
         error: error => {
-
+          this.isLoadingGoogle = false;
         }
       });
     });
@@ -55,7 +61,7 @@ export class LoginComponent implements OnInit {
     this.submitBtnState = ClrLoadingState.LOADING;
 
     // Just for test loading 
-    setTimeout(() => { this.submitBtnState = ClrLoadingState.DEFAULT }, 2000);
+    //setTimeout(() => { this.submitBtnState = ClrLoadingState.DEFAULT }, 2000);
 
     if (this.loginForm.invalid) return null;
 
