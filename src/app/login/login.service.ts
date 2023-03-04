@@ -21,6 +21,6 @@ export class LoginService {
       "Accept": "application/json"
     });
 
-    return this.http.post<user>(environment.apiUrl + "auth/google", obj, { headers: headers });
+    return this.http.post<user>(environment.apiUrl + "google", obj, { headers: headers });
   }
 }

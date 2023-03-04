@@ -1,4 +1,4 @@
 export const environment = {
-    production: true,
-    apiUrl: 'https://multi-login-api.herokuapp.com/api/'
-  };
+  production: true,
+  apiUrl: 'https://jantzch.brazilsouth.cloudapp.azure.com/auth/'
+};
