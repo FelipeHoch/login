@@ -70,7 +70,9 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.value.password!
     };
 
-    return loginData;
+    this.sendCredentials(loginData);
+
+    return true;
   }
 
   // signInWithGoogle(): void {
@@ -87,5 +89,12 @@ export class LoginComponent implements OnInit {
 
   showErrorMsg(formField: AbstractControl): string {
     return this.errorMessageService.getErrorMessage(formField);
+  }
+
+  private sendCredentials(loginData: LoginData) {
+    this.loginService.sendCredentials(loginData).subscribe({
+      next: user => this.authService.signIn(user, this.redirect),
+      error: err => console.log(err)
+    })
   }
 }
