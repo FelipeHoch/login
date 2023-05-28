@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://jantzch.brazilsouth.cloudapp.azure.com/auth/'
+  apiUrl: 'https://multi-login-api-production.up.railway.app/api/'
 };
