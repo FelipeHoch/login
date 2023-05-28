@@ -58,12 +58,11 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.submitBtnState = ClrLoadingState.LOADING;
-
-    // Just for test loading 
-    //setTimeout(() => { this.submitBtnState = ClrLoadingState.DEFAULT }, 2000);
+    this.loginForm.markAllAsTouched();
 
     if (this.loginForm.invalid) return null;
+
+    this.submitBtnState = ClrLoadingState.LOADING;
 
     let loginData: LoginData = {
       email: this.loginForm.value.email!,
@@ -72,7 +71,7 @@ export class LoginComponent implements OnInit {
 
     this.sendCredentials(loginData);
 
-    return true;
+    return;
   }
 
   // signInWithGoogle(): void {
@@ -94,7 +93,9 @@ export class LoginComponent implements OnInit {
   private sendCredentials(loginData: LoginData) {
     this.loginService.sendCredentials(loginData).subscribe({
       next: user => this.authService.signIn(user, this.redirect),
-      error: err => console.log(err)
+      error: err => {
+        this.submitBtnState = ClrLoadingState.ERROR;
+      }
     })
   }
 }
