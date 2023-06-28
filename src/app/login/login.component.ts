@@ -20,6 +20,8 @@ export class LoginComponent implements OnInit {
   faGoogle = faGoogle;
   faMicrosoft = faMicrosoft;
 
+  error: null | string = null;
+
   submitBtnState: ClrLoadingState = ClrLoadingState.DEFAULT;
 
   redirect = this.route.snapshot.queryParamMap.get("redirect") || "";
@@ -52,6 +54,8 @@ export class LoginComponent implements OnInit {
         },
         error: error => {
           this.isLoadingGoogle = false;
+
+          this.error = "Email não encontrado";
         }
       });
     });
@@ -95,6 +99,8 @@ export class LoginComponent implements OnInit {
       next: user => this.authService.signIn(user, this.redirect),
       error: err => {
         this.submitBtnState = ClrLoadingState.ERROR;
+
+        this.error = "Usuário ou senha inválidos";
       }
     })
   }

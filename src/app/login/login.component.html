@@ -34,6 +34,12 @@
 
                     <!-- <a id="forgotPassword" href="">Forgot your password?</a> -->
 
+                    <ng-container *ngIf="error !== null">
+                        <div class="error active">
+                            {{ error }}
+                        </div>
+                    </ng-container>
+
                     <button [clrLoading]="submitBtnState" (click)="onSubmit()" id="loginButton" type="submit"
                         class="btn btn-primary !bg-[#ffcd00] !border-[#ffcd00]">Login</button>
 
