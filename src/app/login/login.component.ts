@@ -3,11 +3,9 @@ import { AbstractControl, NonNullableFormBuilder, Validators } from '@angular/fo
 import { faGoogle, faMicrosoft } from '@fortawesome/free-brands-svg-icons'
 import { ClrLoadingState } from '@clr/angular';
 import { AuthService, FormFieldErrorMsgService, LoginData, LoginForm } from '../core';
-import { GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
 import { LoginService } from './login.service';
 import { ActivatedRoute } from '@angular/router';
-
-
+import { SocialAuthService } from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -77,10 +75,6 @@ export class LoginComponent implements OnInit {
 
     return;
   }
-
-  // signInWithGoogle(): void {
-  //   this.authGoogleService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  // }
 
   get email() {
     return this.loginForm.get('email')!;
