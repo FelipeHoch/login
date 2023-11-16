@@ -125,7 +125,7 @@ describe('LoginComponent', () => {
     loginFormGroup.get('email')?.setValue('hochfelipe@gmail.com');
     loginFormGroup.get('password')?.setValue('012345');
 
-    expect(loginFormGroup.valid).toBeTrue();
+    expect(loginFormGroup.valid).toBeTruthy();
   })
 
   it('should call onSubmit after submit', () => {

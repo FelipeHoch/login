@@ -1,8 +1,10 @@
-<div class="fixed z-10 w-full h-full bg-black/[0.2]" *ngIf="isLoadingGoogle">
-    <div class="flex justify-center items-center h-full">
-        <span class="spinner"></span> 
+@if (isLoadingGoogle()) {
+    <div class="fixed z-10 w-full h-full bg-black/[0.2]">
+        <div class="flex justify-center items-center h-full">
+            <span class="spinner"></span> 
+        </div>
     </div>
-</div>
+}
 
 <div class="login-wrapper content-start">
     <div class="min-h-screen grid justify-items-center content-center">
@@ -32,24 +34,18 @@
                         <clr-control-error>{{ showErrorMsg(password) }}</clr-control-error>
                     </clr-password-container>
 
-                    <!-- <a id="forgotPassword" href="">Forgot your password?</a> -->
-
-                    <ng-container *ngIf="error !== null">
+                    @if (error !== null) {
                         <div class="error active">
                             {{ error }}
                         </div>
-                    </ng-container>
+                    }
 
-                    <button [clrLoading]="submitBtnState" (click)="onSubmit()" id="loginButton" type="submit"
+                    <button [clrLoading]="submitBtnState()" (click)="onSubmit()" id="loginButton" type="submit"
                         class="btn btn-primary !bg-[#ffcd00] !border-[#ffcd00]">Login</button>
 
                     <div class="flex justify-center w-full mt-6">
                         <asl-google-signin-button type='standard' size='large'></asl-google-signin-button>
                     </div>
-
-                    <!-- <button id="loginMicrosoftButton" type="button" class="btn-primary btn-icon btn !bg-[#ffcd00] !border-[#ffcd00] m-0 w-full">
-                            <fa-icon size="lg" [icon]="faMicrosoft"></fa-icon>
-                        </button> -->
                 </div>
             </form>
         </div>

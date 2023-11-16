@@ -1,18 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, NonNullableFormBuilder, Validators } from '@angular/forms';
-import { faGoogle, faMicrosoft } from '@fortawesome/free-brands-svg-icons'
-import { ClrLoadingState } from '@clr/angular';
+import { GoogleSigninButtonModule, SocialAuthService, SocialLoginModule } from '@abacritt/angularx-social-login';
+import { ChangeDetectionStrategy, Component, Input, OnInit, signal } from '@angular/core';
+import { AbstractControl, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { ClarityModule, ClrLoadingState } from '@clr/angular';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faGoogle, faMicrosoft } from '@fortawesome/free-brands-svg-icons';
 import { AuthService, FormFieldErrorMsgService, LoginData, LoginForm } from '../core';
 import { LoginService } from './login.service';
-import { ActivatedRoute } from '@angular/router';
-import { SocialAuthService } from '@abacritt/angularx-social-login';
+import { LoginApiService } from './login.api.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './login.component.html',  
+  standalone: true,
+  imports: [ReactiveFormsModule, FontAwesomeModule, ClarityModule, SocialLoginModule, GoogleSigninButtonModule, RouterModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent implements OnInit {
+  @Input() redirect: string = '/';
 
   // Icons
   faGoogle = faGoogle;
@@ -20,51 +25,36 @@ export class LoginComponent implements OnInit {
 
   error: null | string = null;
 
-  submitBtnState: ClrLoadingState = ClrLoadingState.DEFAULT;
+  submitBtnState = signal(ClrLoadingState.DEFAULT);
 
-  redirect = this.route.snapshot.queryParamMap.get("redirect") || "";
+  isLoadingGoogle = signal(false);
 
-  isLoadingGoogle = false;
-
-  loginForm = this.fb.group<LoginForm>({
-    email: this.fb.control('', [Validators.required, Validators.email]),
-    password: this.fb.control('', [Validators.required, Validators.minLength(6)])
-  });
+  loginForm = this.loginService.createCredentialsForm();
 
   constructor(
-    private fb: NonNullableFormBuilder,
     private errorMessageService: FormFieldErrorMsgService,
     private authGoogleService: SocialAuthService,
+    private loginApiService: LoginApiService,
     private loginService: LoginService,
     private authService: AuthService,
-    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.authGoogleService.authState.subscribe((user) => {
-      this.isLoadingGoogle = true;
+      this.isLoadingGoogle.set(true);
 
-      this.loginService.sendGoogleToken(user.idToken).subscribe({
-        next: res => {
-          this.authService.signIn(res, this.redirect);
+      if (!user) return;
 
-          this.isLoadingGoogle = false;
-        },
-        error: error => {
-          this.isLoadingGoogle = false;
-
-          this.error = "Email não encontrado";
-        }
-      });
+      this.sendGoogleToken(user.idToken);
     });
   }
 
   onSubmit() {
     this.loginForm.markAllAsTouched();
 
-    if (this.loginForm.invalid) return null;
+    if (this.loginForm.invalid) return;
 
-    this.submitBtnState = ClrLoadingState.LOADING;
+    this.submitBtnState.set(ClrLoadingState.LOADING);
 
     let loginData: LoginData = {
       email: this.loginForm.value.email!,
@@ -72,8 +62,6 @@ export class LoginComponent implements OnInit {
     };
 
     this.sendCredentials(loginData);
-
-    return;
   }
 
   get email() {
@@ -89,13 +77,28 @@ export class LoginComponent implements OnInit {
   }
 
   private sendCredentials(loginData: LoginData) {
-    this.loginService.sendCredentials(loginData).subscribe({
+    this.loginApiService.sendCredentials(loginData).subscribe({
       next: user => this.authService.signIn(user, this.redirect),
       error: err => {
-        this.submitBtnState = ClrLoadingState.ERROR;
+        this.submitBtnState.set(ClrLoadingState.ERROR);
 
         this.error = "Usuário ou senha inválidos";
       }
     })
+  }
+
+  private sendGoogleToken(token: string) {
+    this.loginApiService.sendGoogleToken(token).subscribe({
+      next: res => {
+        this.authService.signIn(res, this.redirect);
+
+        this.isLoadingGoogle.set(false);
+      },
+      error: error => {
+        this.isLoadingGoogle.set(false);
+
+        this.error = "Email não encontrado";
+      } 
+    });
   }
 }

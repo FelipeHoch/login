@@ -1,2 +1,1 @@
-export * from './clarity-design';
-export * from './shared.module';
+export * from "./services/local-storage.service";

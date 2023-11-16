@@ -2,8 +2,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { LoginData } from '../core';
+import { LoginData, LoginForm } from '../core';
 import { user } from '../core/interfaces/user';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -11,26 +12,13 @@ import { user } from '../core/interfaces/user';
 export class LoginService {
 
   constructor(
-    private http: HttpClient
+    private readonly _fb: FormBuilder,
   ) { }
 
-  sendCredentials(loginData: LoginData): Observable<user> {
-    let headers = new HttpHeaders({
-      "Content-Type": "application/json",
-      "Accept": "application/json"
+  createCredentialsForm() {
+    return this._fb.group<LoginForm>({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)])
     });
-
-    return this.http.post<user>(environment.apiUrl + "auth", loginData, { headers: headers });
-  }
-
-  sendGoogleToken(token: string): Observable<user> {
-    let obj = { token: token };
-
-    let headers = new HttpHeaders({
-      "Content-Type": "application/json",
-      "Accept": "application/json"
-    });
-
-    return this.http.post<user>(environment.apiUrl + "auth/google", obj, { headers: headers });
   }
 }
