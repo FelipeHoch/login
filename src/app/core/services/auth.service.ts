@@ -12,6 +12,8 @@ export class AuthService {
   signIn(user: user, redirect: string): void {
     let userInBase64 =  window.btoa(JSON.stringify(user));
 
-    window.location.href = redirect + userInBase64;
+    const base64UrlEncoded = encodeURIComponent(userInBase64);
+
+    window.location.href = redirect + base64UrlEncoded;
   }
 }
